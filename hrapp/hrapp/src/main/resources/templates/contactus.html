@@ -1,0 +1,44 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body>
+<main>
+	<h2 style="color:blue;text-align:center;">Enquiry Form</h2>
+	<div th:if="${msg}">
+		<p th:text="${msg}" style="color:blue;text-align:center;"></p>
+	</div>
+	<form class="form-group" method="post" th:object="${edto}">
+		<table class="table table-bordered" style="margin:auto;width:50%">
+			<tr>
+				<td>Enter Name</td>
+				<td>
+					<input type="text" th:field="${edto.name}" class="form-control" required/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Contact No.</td>
+				<td>
+					<input type="number" th:field="${edto.contactno}" class="form-control" required/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Email Address</td>
+				<td>
+					<input type="email" th:field="${edto.emailaddress}" class="form-control" required/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Enquiry Text</td>
+				<td>
+					<textarea class="form-control" th:field="${edto.enquirytext}" required></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="submit" class="btn btn-success">Submit</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</main>
+</body>
+</html>

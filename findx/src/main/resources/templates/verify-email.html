@@ -1,0 +1,61 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body><main>
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="text-center mb-4">
+      <div class="brand-icon mx-auto mb-2" style="width:52px;height:52px;font-size:1.4rem;background:linear-gradient(135deg,#f59e0b,#d97706);">
+        <i class="bi bi-shield-check"></i>
+      </div>
+      <h4 class="fw-800 mb-0">Verify Your Email</h4>
+      <p class="text-muted small">Enter the 6-digit OTP sent to your email</p>
+    </div>
+
+    <div th:if="${error}" class="alert alert-danger d-flex align-items-center py-2 mb-3">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+      <small th:text="${error}">Error</small>
+    </div>
+    <div th:if="${msg}" class="alert alert-success d-flex align-items-center py-2 mb-3">
+      <i class="bi bi-check-circle-fill me-2"></i>
+      <small th:text="${msg}">Message</small>
+    </div>
+
+    <!-- Email sent info -->
+    <div class="mb-3 p-3 rounded-3" style="background:#f0fdf4;border:1px solid #86efac;">
+      <p class="small fw-semibold mb-1" style="color:#059669;"><i class="bi bi-envelope-check me-1"></i>OTP Email Bheja Gaya!</p>
+      <p class="small text-muted mb-0">Apna inbox check karein. OTP <strong>15 minutes</strong> mein expire hoga.</p>
+    </div>
+
+    <form action="/verify-email" method="post">
+      <div class="mb-4">
+        <label class="form-label">6-Digit OTP</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-123"></i></span>
+          <input type="text" name="otp" class="form-control" placeholder="e.g. 482910"
+                 maxlength="6" pattern="[0-9]{6}" required id="otp-input"
+                 style="letter-spacing:6px;font-size:1.3rem;font-weight:700;text-align:center;">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-warning w-100 py-2 mb-3 fw-bold" id="verify-otp-btn" style="color:#fff;">
+        <i class="bi bi-check-circle me-2"></i>Verify OTP
+      </button>
+    </form>
+
+    <form action="/resend-otp" method="post" class="text-center">
+      <p class="text-muted small mb-1">Didn't get the OTP?</p>
+      <button type="submit" class="btn btn-outline-secondary btn-sm" id="resend-otp-btn">
+        <i class="bi bi-arrow-clockwise me-1"></i>Resend OTP
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+// Auto-focus OTP input
+document.getElementById('otp-input').focus();
+// Allow only digits
+document.getElementById('otp-input').addEventListener('input', function() {
+  this.value = this.value.replace(/[^0-9]/g, '');
+});
+</script>
+</main></body>
+</html>

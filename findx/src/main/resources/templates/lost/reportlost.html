@@ -1,0 +1,131 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body><main>
+<div class="page-header">
+  <div class="container px-4">
+    <h1><i class="bi bi-exclamation-circle-fill me-2 text-danger"></i>Report Lost Item</h1>
+    <p class="text-muted mb-0">Fill in the details below. AI will automatically search for matches.</p>
+  </div>
+</div>
+<div class="container px-4 py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <div class="card p-0 border-0" style="border-radius:20px;box-shadow:0 4px 30px rgba(99,102,241,0.1);">
+        <div class="card-body p-4">
+          <!-- AI Notice -->
+          <div class="alert d-flex align-items-center gap-3 mb-4" style="background:linear-gradient(135deg,#ede9fe,#e0e7ff);border:none;border-radius:14px;">
+            <div style="width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;">
+              <i class="bi bi-robot"></i>
+            </div>
+            <div>
+              <div class="fw-bold" style="color:#4f46e5;">AI Matching will run automatically</div>
+              <div class="small" style="color:#6366f1;">After submission, FindX AI will search all found items and send you matches instantly.</div>
+            </div>
+          </div>
+
+          <form action="/lost/report" method="post" enctype="multipart/form-data" th:object="${ldto}">
+            <!-- Section 1: Item Info -->
+            <h6 class="fw-bold mb-3" style="color:#6366f1;border-bottom:2px solid #ede9fe;padding-bottom:8px;">
+              <i class="bi bi-tag-fill me-2"></i>Item Information
+            </h6>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Item Name <span class="text-danger">*</span></label>
+                <input type="text" th:field="*{itemName}" class="form-control" placeholder="e.g. Black Samsung Galaxy S22" required id="lost-name">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Category <span class="text-danger">*</span></label>
+                <select th:field="*{category}" class="form-select" required id="lost-cat">
+                  <option value="">Select Category</option>
+                  <option th:each="cat : ${categories}" th:value="${cat.name}" th:text="${cat.name}">Category</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Sub-Category</label>
+                <input type="text" th:field="*{subCategory}" class="form-control" placeholder="e.g. Smartphone" id="lost-subcat">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Brand</label>
+                <input type="text" th:field="*{brand}" class="form-control" placeholder="e.g. Samsung, Apple, Nike" id="lost-brand">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Model</label>
+                <input type="text" th:field="*{model}" class="form-control" placeholder="e.g. Galaxy S22 Ultra" id="lost-model">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Color</label>
+                <input type="text" th:field="*{color}" class="form-control" placeholder="e.g. Black, Silver" id="lost-color">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Description <span class="text-danger">*</span></label>
+                <textarea th:field="*{description}" class="form-control" rows="3"
+                          placeholder="Describe the item in detail: condition, specific marks, accessories, case color, etc." required id="lost-desc"></textarea>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Unique Identifying Features</label>
+                <textarea th:field="*{uniqueFeatures}" class="form-control" rows="2"
+                          placeholder="Any unique marks, scratches, stickers, engraving, serial number visible from outside..." id="lost-features"></textarea>
+                <div class="form-text text-muted"><i class="bi bi-shield-lock me-1"></i>This will help during verification. Keep secret details for claim.</div>
+              </div>
+            </div>
+
+            <!-- Section 2: Images -->
+            <h6 class="fw-bold mb-3" style="color:#6366f1;border-bottom:2px solid #ede9fe;padding-bottom:8px;">
+              <i class="bi bi-images me-2"></i>Item Images (Optional but improves AI matching)
+            </h6>
+            <div class="mb-4">
+              <label class="form-label">Upload Images (Max 3, 10MB each)</label>
+              <input type="file" name="imageFiles" class="form-control" accept="image/*" multiple id="lost-images">
+              <div class="form-text text-muted">JPG, PNG, WEBP formats supported. More images = Better AI accuracy.</div>
+            </div>
+
+            <!-- Section 3: Location & Date -->
+            <h6 class="fw-bold mb-3" style="color:#6366f1;border-bottom:2px solid #ede9fe;padding-bottom:8px;">
+              <i class="bi bi-geo-alt-fill me-2"></i>Location &amp; Time
+            </h6>
+            <div class="row g-3 mb-4">
+              <div class="col-md-8">
+                <label class="form-label">Lost Location <span class="text-danger">*</span></label>
+                <input type="text" th:field="*{lostLocation}" class="form-control"
+                       placeholder="e.g. Near College Gate, Main Canteen, Bus Stop No. 5" required id="lost-loc">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">City <span class="text-danger">*</span></label>
+                <input type="text" th:field="*{city}" class="form-control" placeholder="e.g. Mumbai" required id="lost-city">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Latitude (Optional)</label>
+                <input type="text" th:field="*{latitude}" class="form-control" placeholder="e.g. 19.0760" id="lost-lat">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Longitude (Optional)</label>
+                <input type="text" th:field="*{longitude}" class="form-control" placeholder="e.g. 72.8777" id="lost-lng">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Lost Date <span class="text-danger">*</span></label>
+                <input type="date" th:field="*{lostDate}" class="form-control" required id="lost-date">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Approximate Lost Time</label>
+                <input type="time" th:field="*{lostTime}" class="form-control" id="lost-time">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Additional Information</label>
+                <textarea th:field="*{additionalInfo}" class="form-control" rows="2"
+                          placeholder="Any other useful information that might help find the item..." id="lost-addinfo"></textarea>
+              </div>
+            </div>
+
+            <div class="d-flex gap-3">
+              <button type="submit" class="btn btn-primary btn-lg px-5" id="lost-submit">
+                <i class="bi bi-send-fill me-2"></i>Submit Report &amp; Run AI
+              </button>
+              <a href="/user/dashboard" class="btn btn-outline-secondary btn-lg">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main></body>
+</html>

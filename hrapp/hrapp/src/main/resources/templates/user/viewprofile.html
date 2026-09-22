@@ -1,0 +1,42 @@
+<html lang="en" th:replace="~{user/userbase :: layout(~{::main})}">
+<body>
+ <main>
+ 	<h1 style="text-align:center;">View Your Profile</h1>
+ 	<hr/>
+ 	<table class="table table-bordered" style="width:50%; margin:auto;">
+ 		<tr>
+ 			<td>Name</td>
+ 			<td th:text="${js.name}"></td>
+ 		</tr>
+ 		<tr>
+ 			<td>Address</td>
+ 			<td th:text="${js.address}"></td>
+ 		</tr>
+ 		<tr>
+ 			<td>Contact No</td>
+ 			<td th:text="${js.contactno}"></td>
+ 		</tr>
+ 		<tr>
+ 			<td>Email Address</td>
+ 			<td th:text="${js.emailaddress}"></td>
+ 		</tr>
+ 		<tr>
+ 			<td>Qualification</td>
+ 			<td th:text="${js.qualification}"></td>
+ 		</tr>
+ 		<tr>
+ 			<td>Experience</td>
+ 			<td th:text="${js.experience}"></td>
+ 		</tr>
+ 		<tr>
+ 			<td>Key Skills</td>
+ 			<td th:text="${js.keyskills}"></td>
+ 		</tr>
+ 		<tr>
+ 			<td>Registration Date</td>
+ 			<td th:text="${js.regdate}"></td>
+ 		</tr>
+ 	</table>
+ </main>
+</body>
+</html>

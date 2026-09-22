@@ -1,0 +1,88 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body><main>
+<div class="page-header">
+  <div class="container px-4">
+    <h1><i class="bi bi-envelope-fill me-2" style="color:#6366f1;"></i>Contact Us</h1>
+    <p class="text-muted mb-0">Have questions? We'd love to hear from you.</p>
+  </div>
+</div>
+<div class="container px-4 py-5">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Contact Info Cards -->
+    <div class="col-lg-4">
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="card h-100" style="border-radius:16px;border:none;box-shadow:0 2px 12px rgba(99,102,241,0.08);">
+            <div class="card-body p-4 text-center">
+              <div class="mb-3" style="width:52px;height:52px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto;">
+                <i class="bi bi-envelope-fill text-white fs-5"></i>
+              </div>
+              <h6 class="fw-bold">Email Us</h6>
+              <p class="text-muted small mb-0">support@findx.in</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card h-100" style="border-radius:16px;border:none;box-shadow:0 2px 12px rgba(99,102,241,0.08);">
+            <div class="card-body p-4 text-center">
+              <div class="mb-3" style="width:52px;height:52px;background:linear-gradient(135deg,#059669,#10b981);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto;">
+                <i class="bi bi-telephone-fill text-white fs-5"></i>
+              </div>
+              <h6 class="fw-bold">Call Us</h6>
+              <p class="text-muted small mb-0">+91 98765 43210</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card h-100" style="border-radius:16px;border:none;box-shadow:0 2px 12px rgba(99,102,241,0.08);">
+            <div class="card-body p-4 text-center">
+              <div class="mb-3" style="width:52px;height:52px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto;">
+                <i class="bi bi-clock-fill text-white fs-5"></i>
+              </div>
+              <h6 class="fw-bold">Support Hours</h6>
+              <p class="text-muted small mb-0">Mon–Sat: 9AM – 6PM IST</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="col-lg-7">
+      <div class="form-card">
+        <h5 class="fw-bold mb-1">Send us a Message</h5>
+        <p class="text-muted small mb-4">Fill out the form and we'll get back to you as soon as possible.</p>
+        <div th:if="${contactMsg}" class="alert alert-success py-2"><i class="bi bi-check-circle me-2"></i><span th:text="${contactMsg}"></span></div>
+        <form action="/contact" method="post">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Your Name</label>
+              <input type="text" name="name" class="form-control" required id="contact-name" placeholder="John Doe">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email Address</label>
+              <input type="email" name="email" class="form-control" required id="contact-email" placeholder="you@example.com">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Subject</label>
+              <input type="text" name="subject" class="form-control" required id="contact-subject" placeholder="How can we help?">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Message</label>
+              <textarea name="message" class="form-control" rows="5" required id="contact-message" placeholder="Describe your query in detail..."></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary px-4" id="contact-submit-btn">
+                <i class="bi bi-send-fill me-2"></i>Send Message
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+</main></body>
+</html>

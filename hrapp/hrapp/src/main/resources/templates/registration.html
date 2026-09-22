@@ -1,0 +1,75 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body>
+<main>
+	<h2 style="color:blue;text-align:center;">Job Seeker Registration</h2>
+	<div th:if="${msg}">
+		<p style="color:green;text-align:center;" th:text="${msg}"></p>
+	</div>
+	<form class="form-group" method="post" th:object="${jdto}">
+		<table class="table table-bordered" style="margin:auto; width:50%;">
+			<tr>
+				<td>Enter Name</td>
+				<td>
+					<input type="text" th:field="${jdto.name}" class="form-control" required/>
+				</td>
+			</tr>
+			<tr>
+				<td>Select Gender</td>
+				<td>
+					<input type="radio" th:field="${jdto.gender}" value="Male" class="form-check-input"/>Male
+					<input type="radio" th:field="${jdto.gender}" value="Female" class="form-check-input"/>Female
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Address</td>
+				<td>
+					<textarea th:field="${jdto.address}" required class="form-control"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Contact No</td>
+				<td>
+					<input type="number" th:field="${jdto.contactno}" required class="form-control"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Email Address</td>
+				<td>
+					<input type="email" th:field="${jdto.emailaddress}" required class="form-control"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Qualification</td>
+				<td>
+					<input type="text" th:field="${jdto.qualification}" required class="form-control"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Experience</td>
+				<td>
+					<input type="text" th:field="${jdto.experience}" required class="form-control"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Key Skills</td>
+				<td>
+					<input type="text" th:field="${jdto.keyskills}" required class="form-control"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Password</td>
+				<td>
+					<input type="password" th:field="${jdto.password}" required class="form-control"/>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="submit" class="btn btn-success">Registration</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</main>
+</body>
+</html>

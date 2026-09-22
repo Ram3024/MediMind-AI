@@ -1,0 +1,32 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body>
+<main>
+	<h2 style="color:blue;text-align:center;">Job Seeker Login</h2>
+	<div th:if="${msg}">
+		<p style="color:blue;text-align:center" th:text="${msg}"></p>
+	</div>
+	<form class="form-group" method="post" action="/login">
+		<table class="table table-bordered" style="margin:auto;width:50%;">
+			<tr>
+				<td>Enter User Id (Email)</td>
+				<td>
+					<input type="text" name="emailaddress" class="form-control" required/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Password</td>
+				<td>
+					<input type="password" name="password" class="form-control" required/>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="submit" class="btn btn-success">Login</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</main>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="en" th:replace="~{admin/adminbase :: layout(~{::main})}">
+<body>
+ <main>
+ 	<h1 style="color: blue;text-align:center;">View Job Seekers</h1>
+ 	<table class="table table-bordered">
+ 		<tr>
+ 			<th>Name</th>
+ 			<th>Address</th>
+ 			<th>Contact No</th>
+ 			<th>Email Address</th>
+ 			<th>Qualification</th>
+ 			<th>Experience</th>
+ 			<th>Key Skills</th>
+ 			<th>Reg Date</th>
+ 		</tr>
+ 		<tr th:each="j:${js}">
+ 			<td th:text="${j.name}"></td>
+ 			<td th:text="${j.address}"></td>
+ 			<td th:text="${j.contactno}"></td>
+ 			<td th:text="${j.emailaddress}"></td>
+ 			<td th:text="${j.qualification}"></td>
+ 			<td th:text="${j.experience}"></td>
+ 			<td th:text="${j.keyskills}"></td>
+ 			<td th:text="${j.regdate}"></td>
+ 		</tr>
+ 	</table>
+ </main>
+</body>
+</html>

@@ -1,0 +1,41 @@
+# Environment variables & secrets
+.env
+.env.*
+.env.local
+*.env
+*.key
+*.pem
+
+# Compiled class & Java files
+target/
+*.class
+*.jar
+*.war
+
+# Node / Next.js / Frontend dependencies
+node_modules/
+.next/
+dist/
+build/
+.cache/
+out/
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs & System
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+.DS_Store
+Thumbs.db
+
+# Windows / Temporary scripts
+cookies.txt
+*.ps1

@@ -1,0 +1,39 @@
+<html lang="en" th:replace="~{user/userbase :: layout(~{::main})}">
+<body>
+ <main>
+ 	<h1 style="text-align:center;">Change User Password</h1>
+ 	<div th:if="${msg}">
+ 		<p th:text="${msg}" style="color:red;text-align:center;"></p>
+ 	</div>
+ 	<hr/>
+ 	<form class="form-group" method="post">
+ 		<table class="table table-bordered" style="width:50%;margin:auto;">
+ 			<tr>
+ 				<td>Enter Old Password</td>
+ 				<td>
+ 					<input type="password" name="oldpassword" required class="form-control"/>
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<td>Enter New Password</td>
+ 				<td>
+ 					<input type="password" name="newpassword" required class="form-control"/>
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<td>Confirm Password</td>
+ 				<td>
+ 					<input type="password" name="confirmpassword" required class="form-control"/>
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<td></td>
+ 				<td>
+ 					<button type="submit" class="btn btn-success">Change Password</button>
+ 				</td>
+ 			</tr>
+ 		</table>
+ 	</form>
+ </main>
+</body>
+</html>

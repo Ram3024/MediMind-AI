@@ -1,0 +1,23 @@
+<html lang="en" th:replace="~{admin/adminbase :: layout(~{::main})}">
+<body>
+ <main>
+ 	<h1 style="color:blue;text-align:center;">View User Enquiries</h1>
+ 	<table class="table table-bordered">
+ 		<tr>
+ 			<th>Id</th>
+ 			<th>Name</th>
+ 			<th>Contact No</th>
+ 			<th>Email Address</th>
+ 			<th>Enquiry Message</th>
+ 		</tr>
+ 		<tr th:each="e:${enq}">
+ 			<td th:text="${e.id}"></td>
+ 			<td th:text="${e.name}"></td>
+ 			<td th:text="${e.contactno}"></td>
+ 			<td th:text="${e.emailaddress}"></td>
+ 			<td th:text="${e.enquirytext}"></td>
+ 		</tr>
+ 	</table>
+ </main>
+</body>
+</html>

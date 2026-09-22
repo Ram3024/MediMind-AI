@@ -1,0 +1,61 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body><main>
+<div class="page-header">
+  <div class="container px-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h1><i class="bi bi-bell-fill me-2" style="color:#f59e0b;"></i>Notifications</h1>
+        <p class="text-muted mb-0">All your alerts, match notifications, and claim updates.</p>
+      </div>
+      <form action="/notifications/mark-all-read" method="post" th:if="${!notifications.empty}">
+        <button type="submit" class="btn btn-outline-secondary btn-sm" id="mark-all-read-btn">
+          <i class="bi bi-check2-all me-1"></i>Mark All as Read
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container px-4 py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div th:if="${notifications.empty}" class="text-center py-5 text-muted">
+        <div style="width:80px;height:80px;background:#fef3c7;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#f59e0b;margin:0 auto 20px;">
+          <i class="bi bi-bell-slash"></i>
+        </div>
+        <h5>No notifications yet</h5>
+        <p class="small">You'll be notified here when AI finds a match for your lost items.</p>
+      </div>
+
+      <div th:each="notif : ${notifications}">
+        <div th:class="${notif.read ? 'notif-card' : 'notif-card unread'}" class="d-flex gap-3">
+          <div class="notif-icon">
+            <i th:class="${'bi ' + notif.iconClass}"></i>
+          </div>
+          <div class="flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start">
+              <h6 class="fw-bold mb-1" th:text="${notif.title}">Title</h6>
+              <small class="text-muted ms-2 flex-shrink-0"
+                     th:text="${notif.createdAt != null ? notif.createdAt.toString().substring(0,16).replace('T',' ') : ''}">Time</small>
+            </div>
+            <p class="text-muted small mb-2" th:text="${notif.message}">Message</p>
+            <div class="d-flex gap-2 flex-wrap">
+              <a th:if="${notif.linkUrl != null}" th:href="${notif.linkUrl}"
+                 class="btn btn-sm btn-primary" style="border-radius:8px;padding:4px 14px;font-size:0.78rem;">
+                View Details <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+              <a th:if="${!notif.read}" th:href="@{/notifications/read/{id}(id=${notif.id})}"
+                 class="btn btn-sm btn-outline-secondary" style="border-radius:8px;padding:4px 12px;font-size:0.78rem;" id="mark-read-btn">
+                <i class="bi bi-check2 me-1"></i>Mark Read
+              </a>
+            </div>
+          </div>
+          <div th:if="${!notif.read}">
+            <span class="badge rounded-pill" style="background:#6366f1;color:#fff;font-size:0.65rem;">NEW</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main></body>
+</html>

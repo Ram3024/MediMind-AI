@@ -1,0 +1,72 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body><main>
+<div class="page-header">
+  <div class="container px-4">
+    <h1><i class="bi bi-info-circle-fill me-2" style="color:#6366f1;"></i>About FindX</h1>
+    <p class="text-muted mb-0">AI-Powered Lost &amp; Found Platform – CSE Major Project</p>
+  </div>
+</div>
+<div class="container px-4 py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+
+      <!-- Mission Banner -->
+      <div class="card border-0 mb-4" style="background:linear-gradient(135deg,#312e81,#4338ca,#6366f1);border-radius:20px;padding:32px;color:#fff;">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:52px;height:52px;background:rgba(255,255,255,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">
+            <i class="bi bi-search-heart-fill"></i>
+          </div>
+          <div>
+            <h3 class="fw-bold mb-0">Reuniting People with Belongings</h3>
+            <small style="color:rgba(255,255,255,0.75);">AI Driven Smart Matching System</small>
+          </div>
+        </div>
+        <p class="mb-0" style="color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.6;">
+          FindX is an intelligent lost and found management platform designed to replace manual, inefficient search processes.
+          By leveraging multi-factor algorithms, text tokenization, location proximity, and descriptor similarity, FindX automatically matches reported lost items with found items in real time.
+        </p>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="card h-100 p-4" style="border-radius:16px;">
+            <div class="feature-icon feature-icon-purple mb-3" style="width:48px;height:48px;font-size:1.3rem;"><i class="bi bi-robot"></i></div>
+            <h6 class="fw-bold">7-Factor AI Algorithm</h6>
+            <p class="text-muted small mb-0">Analyzes text, TF-IDF cosine similarity, brand aliases, color ranges, date decay, and Haversine location distances.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 p-4" style="border-radius:16px;">
+            <div class="feature-icon feature-icon-green mb-3" style="width:48px;height:48px;font-size:1.3rem;"><i class="bi bi-shield-check"></i></div>
+            <h6 class="fw-bold">Secure Claiming</h6>
+            <p class="text-muted small mb-0">Prevents false claims by requiring secret identifying marks, IMEI/serial numbers, and proof of purchase.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 p-4" style="border-radius:16px;">
+            <div class="feature-icon feature-icon-blue mb-3" style="width:48px;height:48px;font-size:1.3rem;"><i class="bi bi-bar-chart-line"></i></div>
+            <h6 class="fw-bold">Admin Panel &amp; Analytics</h6>
+            <p class="text-muted small mb-0">Comprehensive dashboard for managing users, approving claims, viewing match scores, and category controls.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack Badges -->
+      <div class="card p-4" style="border-radius:16px;">
+        <h6 class="fw-bold mb-3"><i class="bi bi-code-slash me-2" style="color:#6366f1;"></i>Technology Stack</h6>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge px-3 py-2" style="background:#ede9fe;color:#6366f1;font-size:0.85rem;"><i class="bi bi-cup-hot-fill me-1"></i>Java 17</span>
+          <span class="badge px-3 py-2" style="background:#dcfce7;color:#059669;font-size:0.85rem;"><i class="bi bi-gear-fill me-1"></i>Spring Boot 3.3.5</span>
+          <span class="badge px-3 py-2" style="background:#dbeafe;color:#2563eb;font-size:0.85rem;"><i class="bi bi-database-fill me-1"></i>Spring Data JPA</span>
+          <span class="badge px-3 py-2" style="background:#fef3c7;color:#d97706;font-size:0.85rem;"><i class="bi bi-filetype-html me-1"></i>Thymeleaf Templates</span>
+          <span class="badge px-3 py-2" style="background:#fee2e2;color:#dc2626;font-size:0.85rem;"><i class="bi bi-bootstrap-fill me-1"></i>Bootstrap 5 &amp; Custom CSS</span>
+          <span class="badge px-3 py-2" style="background:#e0e7ff;color:#4338ca;font-size:0.85rem;"><i class="bi bi-server me-1"></i>H2 / MySQL Database</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</main></body>
+</html>

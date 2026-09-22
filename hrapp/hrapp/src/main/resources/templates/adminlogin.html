@@ -1,0 +1,32 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body>
+<main>
+	<h2 style="color:blue;text-align:center;">Admin Login</h2>
+	<div th:if="${msg}">
+		<p th:text="${msg}" style="color:red;text-align:center;"></p>
+	</div>
+	<form class="form-group" th:object="${aldto}" method="post">
+		<table class="table table-bordered" style="margin:auto;width:50%;">
+			<tr>
+				<td>Enter Admin Id</td>
+				<td>
+					<input type="text" th:field="${aldto.adminid}" class="form-control" required/>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter Password</td>
+				<td>
+					<input type="password" th:field="${aldto.password}" class="form-control" required/>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="submit" class="btn btn-primary">Admin Login</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</main>
+</body>
+</html>

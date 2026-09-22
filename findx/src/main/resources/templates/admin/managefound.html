@@ -1,0 +1,39 @@
+<html lang="en" th:replace="~{adminbase::layout(~{::main})}">
+<body><main>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h4 class="fw-bold mb-0"><i class="bi bi-bag-check-fill me-2 text-success"></i>Manage Found Reports</h4>
+  <span class="badge rounded-pill px-3 py-2" style="background:#dcfce7;color:#059669;" th:text="${items.size() + ' reports'}">0</span>
+</div>
+<div class="card" style="border-radius:14px;">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr><th>#</th><th>Item</th><th>Category</th><th>Brand/Color</th><th>City</th><th>Date</th><th>Status</th><th>Matches</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="item, s : ${items}">
+            <td th:text="${s.count}">1</td>
+            <td class="fw-medium" th:text="${item.itemName}">Item</td>
+            <td><small th:text="${item.category}">Cat</small></td>
+            <td><small th:text="${item.brand + ' / ' + item.color}">Brand</small></td>
+            <td><small th:text="${item.city}">City</small></td>
+            <td><small th:text="${item.foundDate}">Date</small></td>
+            <td><span class="badge badge-active" th:text="${item.status}">ACTIVE</span></td>
+            <td><span class="badge rounded-pill" style="background:#ede9fe;color:#6366f1;" th:text="${item.matchCount}">0</span></td>
+            <td>
+              <a th:href="@{/admin/found/delete/{id}(id=${item.id})}" class="btn btn-danger btn-sm"
+                 style="border-radius:8px;padding:3px 10px;font-size:0.72rem;"
+                 onclick="return confirm('Delete this report?')">
+                <i class="bi bi-trash"></i>
+              </a>
+            </td>
+          </tr>
+          <tr th:if="${items.empty}"><td colspan="9" class="text-center text-muted py-4">No found reports yet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</main></body>
+</html>

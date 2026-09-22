@@ -1,0 +1,59 @@
+<html lang="en" th:replace="~{adminbase::layout(~{::main})}">
+<body><main>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h4 class="fw-bold mb-0"><i class="bi bi-file-check-fill me-2" style="color:#6366f1;"></i>Manage Claims</h4>
+  <div>
+    <span class="badge rounded-pill px-3 py-2 me-2" style="background:#fef3c7;color:#d97706;">
+      Pending: <span th:text="${claims.stream().filter(c -> c.status == 'PENDING').count()}">0</span>
+    </span>
+    <span class="badge rounded-pill px-3 py-2" style="background:#dcfce7;color:#059669;">
+      Verified: <span th:text="${claims.stream().filter(c -> c.status == 'VERIFIED').count()}">0</span>
+    </span>
+  </div>
+</div>
+<div class="card" style="border-radius:14px;">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr><th>#</th><th>Lost Item</th><th>Found Item</th><th>Claimant</th><th>Claim Date</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="claim, s : ${claims}">
+            <td th:text="${s.count}">1</td>
+            <td>
+              <div class="fw-medium" th:text="${lostMap[claim.lostItemId] != null ? lostMap[claim.lostItemId].itemName : 'ID:'+claim.lostItemId}">Item</div>
+              <small class="text-muted" th:text="${lostMap[claim.lostItemId] != null ? lostMap[claim.lostItemId].city : ''}">City</small>
+            </td>
+            <td>
+              <div class="fw-medium" th:text="${foundMap[claim.foundItemId] != null ? foundMap[claim.foundItemId].itemName : 'ID:'+claim.foundItemId}">Item</div>
+              <small class="text-muted" th:text="${foundMap[claim.foundItemId] != null ? foundMap[claim.foundItemId].city : ''}">City</small>
+            </td>
+            <td><small th:text="${claim.claimantId}">ID</small></td>
+            <td><small th:text="${claim.claimDate != null ? claim.claimDate.toString().substring(0,10) : 'N/A'}">Date</small></td>
+            <td>
+              <span th:class="${claim.status == 'PENDING' ? 'badge badge-pending' : (claim.status == 'VERIFIED' ? 'badge badge-verified' : (claim.status == 'REJECTED' ? 'badge badge-rejected' : 'badge badge-review'))}"
+                    th:text="${claim.status}">PENDING</span>
+            </td>
+            <td>
+              <div class="d-flex gap-1" th:if="${claim.status == 'PENDING' or claim.status == 'UNDER_REVIEW'}">
+                <a th:href="@{/admin/claims/approve/{id}(id=${claim.id})}" class="btn btn-success btn-sm" style="border-radius:8px;padding:4px 10px;font-size:0.72rem;">
+                  <i class="bi bi-check-circle me-1"></i>Approve
+                </a>
+                <a th:href="@{/admin/claims/reject/{id}(id=${claim.id})}" class="btn btn-danger btn-sm" style="border-radius:8px;padding:4px 10px;font-size:0.72rem;">
+                  <i class="bi bi-x-circle me-1"></i>Reject
+                </a>
+              </div>
+              <div th:if="${claim.status == 'VERIFIED' or claim.status == 'REJECTED'}">
+                <small class="text-muted" th:text="'By: ' + ${claim.reviewedBy}">Reviewed</small>
+              </div>
+            </td>
+          </tr>
+          <tr th:if="${claims.empty}"><td colspan="7" class="text-center text-muted py-4">No claims submitted yet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</main></body>
+</html>

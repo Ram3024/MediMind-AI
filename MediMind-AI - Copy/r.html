@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LimeJungle - Put Your Slogan Here</title>
+  <meta name="description" content="LimeJungle - A beautiful green themed blog and website template."/>
+  <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Tahoma:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Tahoma, Arial, sans-serif; font-size: 13px; color: #444; background: #6b8e23; min-height: 100vh; }
+    a { color: #6b8e23; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #4a6210; }
+    #wrapper { width: 780px; margin: 0 auto; position: relative; }
+    body::before {
+      content: '';
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle 120px at 85% 8%, rgba(154,205,50,0.5) 0%, transparent 70%),
+        radial-gradient(circle 80px at 92% 14%, rgba(154,205,50,0.35) 0%, transparent 70%),
+        radial-gradient(circle 60px at 96% 20%, rgba(154,205,50,0.25) 0%, transparent 70%),
+        radial-gradient(circle 90px at 5% 30%, rgba(154,205,50,0.35) 0%, transparent 70%),
+        radial-gradient(circle 140px at 2% 50%, rgba(154,205,50,0.3) 0%, transparent 70%),
+        radial-gradient(circle 70px at 8% 60%, rgba(154,205,50,0.2) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    #header { background: #4a6210; padding: 12px 20px 10px; position: relative; z-index: 10; }
+    #logo h1 { font-size: 28px; font-weight: bold; color: #fff; font-family: Georgia, serif; }
+    #logo h1 span { color: #c8e26b; }
+    #logo p { font-size: 11px; color: #b8d460; margin-top: -2px; }
+    #nav { background: #fff; border-bottom: 3px solid #8db43a; display: flex; align-items: center; padding: 0; position: relative; z-index: 10; }
+    #nav ul { list-style: none; display: flex; }
+    #nav ul li a { display: block; padding: 12px 16px; font-size: 12px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; }
+    #nav ul li a:hover, #nav ul li.active a { color: #8db43a; }
+    #nav ul li.active a { border-bottom: 3px solid #8db43a; margin-bottom: -3px; }
+    #nav ul li a { transition: all 0.15s; }
+    #search-box { margin-left: auto; display: flex; align-items: center; padding-right: 10px; }
+    #search-box input { border: 1px solid #ccc; padding: 5px 10px; font-size: 12px; color: #aaa; border-radius: 3px 0 0 3px; outline: none; width: 130px; }
+    #search-box button { background: #8db43a; border: 1px solid #7aa030; border-left: none; padding: 5px 9px; cursor: pointer; border-radius: 0 3px 3px 0; color: #fff; font-size: 14px; }
+    #search-box button:hover { background: #6b8e23; }
+    #hero { width: 100%; height: 190px; background: linear-gradient(135deg, #c8dfa0 0%, #e8f0d0 30%, #d0e8c8 60%, #b8d890 100%); position: relative; overflow: hidden; z-index: 5; }
+    .bookshelf { position: absolute; left: 18px; bottom: 0; width: 100px; height: 130px; background: linear-gradient(180deg, #c8a060 0%, #a07840 100%); border-radius: 4px; display: flex; flex-direction: column; justify-content: space-around; padding: 8px 6px; }
+    .book-row { display: flex; gap: 3px; align-items: flex-end; }
+    .book { width: 12px; border-radius: 2px; }
+    .sofa-wrap { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 360px; display: flex; align-items: flex-end; justify-content: center; }
+    .sofa-arm { width: 40px; height: 70px; background: linear-gradient(180deg, #2d7a2d 0%, #1a5e1a 100%); border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .sofa-body { width: 280px; height: 90px; background: linear-gradient(180deg, #2d7a2d 0%, #1a5e1a 60%, #144514 100%); border-radius: 12px 12px 6px 6px; position: relative; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .sofa-body::before { content: ''; position: absolute; top: 12px; left: 15px; right: 15px; height: 38px; background: linear-gradient(180deg, #3a9e3a 0%, #2d7a2d 100%); border-radius: 8px 8px 0 0; }
+    .sofa-legs { position: absolute; bottom: -14px; left: 30px; right: 30px; display: flex; justify-content: space-between; }
+    .sofa-leg { width: 12px; height: 16px; background: linear-gradient(180deg, #8B6914 0%, #5a4010 100%); border-radius: 0 0 4px 4px; }
+    .side-table { position: absolute; right: 28px; bottom: 0; width: 75px; }
+    .table-top { width: 100%; height: 14px; background: linear-gradient(180deg, #7a5020 0%, #5a3810 100%); border-radius: 4px; }
+    .table-legs { display: flex; justify-content: center; gap: 20px; }
+    .table-leg { width: 8px; height: 50px; background: linear-gradient(180deg, #6a4018 0%, #4a2c0c 100%); border-radius: 0 0 3px 3px; }
+    .book-on-table { width: 30px; height: 14px; background: #3870c8; border-radius: 2px; margin-left: 5px; margin-bottom: 1px; }
+    #main-area { background: rgba(255,255,255,0.97); display: flex; position: relative; z-index: 5; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    #content { flex: 1; padding: 22px 24px; border-right: 1px solid #e5e5e5; }
+    .post { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid #e8edd0; transition: background 0.2s; }
+    .post:last-of-type { border-bottom: none; }
+    .post:hover { background: #fafdf5; }
+    .post h2 { font-size: 19px; font-weight: bold; color: #333; font-family: Georgia, serif; margin-bottom: 5px; }
+    .post h2 a { color: #333; }
+    .post h2 a:hover { color: #6b8e23; text-decoration: none; }
+    .post-meta { font-size: 11px; color: #888; margin-bottom: 12px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
+    .post-meta a { color: #8db43a; }
+    .post-meta span { color: #aaa; margin: 0 3px; }
+    .post-image { float: left; margin: 0 14px 10px 0; border: 3px solid #ddd; border-radius: 3px; overflow: hidden; width: 180px; height: 128px; }
+    .person-placeholder { width: 100%; height: 100%; background: linear-gradient(180deg, #87CEEB 0%, #c8e0f8 40%, #90c060 70%, #78a850 100%); display: flex; align-items: flex-end; justify-content: center; position: relative; overflow: hidden; }
+    .person-head { width: 44px; height: 54px; background: #d4956a; border-radius: 50% 50% 40% 40%; margin: 0 auto; position: relative; }
+    .person-hair { position: absolute; top: -5px; left: -5px; right: -5px; height: 34px; background: #c8763a; border-radius: 50% 50% 20% 20%; }
+    .person-body { width: 68px; height: 48px; background: #fff; border-radius: 8px 8px 0 0; margin: 0 auto; }
+    .ground { position: absolute; bottom: 0; left: 0; right: 0; height: 30px; background: linear-gradient(180deg,#78c040,#60a030); }
+    .clearfix::after { content: ''; display: block; clear: both; }
+    .post-text p { line-height: 1.7; color: #555; margin-bottom: 10px; }
+    .highlight-link { color: #6b8e23; }
+    .red-link { color: #cc3333; text-decoration: underline; }
+    a.read-more { color: #6b8e23; font-style: italic; font-size: 12px; }
+    #pagination { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 12px; }
+    #pagination .page-info { color: #888; }
+    .page-links { display: flex; gap: 4px; }
+    .page-links a, .page-links span { display: inline-block; padding: 4px 9px; border: 1px solid #ccc; border-radius: 3px; color: #555; font-size: 12px; text-decoration: none; transition: all 0.15s; }
+    .page-links .active-page { background: #6b8e23; color: #fff; border-color: #6b8e23; }
+    .page-links a:hover { background: #f0f5e8; border-color: #8db43a; color: #6b8e23; }
+    #sidebar { width: 195px; padding: 18px 14px; background: #f8faf2; }
+    .sidebar-section { margin-bottom: 20px; }
+    .sidebar-section h3 { font-size: 15px; font-weight: bold; color: #333; font-family: Georgia, serif; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 2px solid #c8de90; }
+    .sidebar-section ul { list-style: none; }
+    .sidebar-section ul li { padding: 5px 0; border-bottom: 1px solid #eee; }
+    .sidebar-section ul li a { color: #6b8e23; font-size: 12px; }
+    .sidebar-section ul li a:hover { text-decoration: underline; color: #4a6210; }
+    .sponsor-item { margin-bottom: 7px; font-size: 12px; }
+    .sponsor-item p { color: #555; line-height: 1.4; }
+    .sponsor-item a { color: #c84020; text-decoration: underline; font-size: 11px; }
+    #footer-panels { background: rgba(245,250,235,0.98); border-top: 1px solid #d8e8b0; display: flex; position: relative; z-index: 5; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .footer-panel { flex: 1; padding: 18px 18px; border-right: 1px solid #d8e8b0; }
+    .footer-panel:last-child { border-right: none; }
+    .footer-panel h4 { font-size: 14px; font-weight: bold; color: #333; font-family: Georgia, serif; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid #c8de90; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .gallery-thumb { width: 100%; aspect-ratio: 1; border-radius: 3px; border: 2px solid #ddd; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; color: #fff; }
+    .gallery-thumb:hover { transform: scale(1.07); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .gt1 { background: linear-gradient(135deg, #606060, #404040); }
+    .gt2 { background: linear-gradient(135deg, #d08040, #905020); }
+    .gt3 { background: linear-gradient(135deg, #404080, #2040a0); }
+    .gt4 { background: linear-gradient(135deg, #c03030, #801010); }
+    .gt5 { background: linear-gradient(135deg, #d4b860, #a08030); }
+    .gt6 { background: linear-gradient(135deg, #506080, #304060); }
+    .lorem-text { font-size: 12px; color: #555; line-height: 1.7; }
+    .lorem-text a { color: #c84020; text-decoration: underline; }
+    .contact-info { font-size: 12px; color: #555; }
+    .contact-info p { margin-bottom: 6px; line-height: 1.6; }
+    .contact-email { color: #6b8e23; }
+    #bottom-footer { background: #3d5c10; color: #a8c860; font-size: 11px; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 5; }
+    #bottom-footer a { color: #c8e280; text-decoration: underline; }
+    #bottom-footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+<div id="wrapper">
+
+  <!-- HEADER -->
+  <div id="header">
+    <div id="logo">
+      <h1>Lime<span>Jungle</span></h1>
+      <p>put your slogan here</p>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="nav">
+    <ul>
+      <li class="active"><a href="#" id="nav-home">HOME</a></li>
+      <li><a href="#" id="nav-support">SUPPORT</a></li>
+      <li><a href="#" id="nav-about">ABOUT US</a></li>
+      <li><a href="#" id="nav-blog">BLOG</a></li>
+      <li><a href="#" id="nav-contact">CONTACT US</a></li>
+    </ul>
+    <div id="search-box">
+      <input type="text" id="site-search" placeholder="Search our site"/>
+      <button id="search-btn">&#128269;</button>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <div id="hero">
+    <!-- Bookshelf left -->
+    <div class="bookshelf">
+      <div class="book-row">
+        <div class="book" style="height:38px;background:#3a6ea8;"></div>
+        <div class="book" style="height:28px;background:#e87040;"></div>
+        <div class="book" style="height:42px;background:#c84040;"></div>
+        <div class="book" style="height:32px;background:#40a040;"></div>
+        <div class="book" style="height:25px;background:#8040c8;"></div>
+        <div class="book" style="height:30px;background:#e0b030;"></div>
+      </div>
+      <div class="book-row" style="margin-top:4px;">
+        <div class="book" style="height:22px;background:#e87040;"></div>
+        <div class="book" style="height:18px;background:#40a040;"></div>
+        <div class="book" style="height:26px;background:#c84040;"></div>
+      </div>
+    </div>
+
+    <!-- Sofa center -->
+    <div class="sofa-wrap">
+      <div class="sofa-arm"></div>
+      <div class="sofa-body">
+        <div class="sofa-legs">
+          <div class="sofa-leg"></div>
+          <div class="sofa-leg"></div>
+          <div class="sofa-leg"></div>
+          <div class="sofa-leg"></div>
+        </div>
+      </div>
+      <div class="sofa-arm"></div>
+    </div>
+
+    <!-- Side table right -->
+    <div class="side-table">
+      <div class="book-on-table"></div>
+      <div class="table-top"></div>
+      <div class="table-legs">
+        <div class="table-leg"></div>
+        <div class="table-leg"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN AREA -->
+  <div id="main-area">
+    <div id="content">
+
+      <!-- Post 1 -->
+      <div class="post">
+        <h2><a href="#" id="post1-title">Template License</a></h2>
+        <div class="post-meta">
+          Date: <a href="#" id="post1-date">16.03.2018</a> <span>|</span>
+          Posted by <a href="#" id="post1-author">Owner</a> <span>|</span>
+          Filed under <a href="#" id="post1-cat1">templates</a>, <a href="#" id="post1-cat2">internet</a>
+          with <a href="#" id="post1-comments">comments (11)</a>
+        </div>
+        <div class="post-image" id="post1-image">
+          <div class="person-placeholder">
+            <div class="ground"></div>
+            <div style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);">
+              <div class="person-head"><div class="person-hair"></div></div>
+              <div class="person-body"></div>
+            </div>
+          </div>
+        </div>
+        <div class="post-text clearfix">
+          <p>This is a free CSS website template by <a href="#" class="highlight-link">FreeWebsiteTemplateZ.com</a>. This work is distributed under the Creative Commons Attribution 3.0 License, which means that you are free to use it for any personal or commercial purpose provided the credit links in the template footer are left intact.</p>
+          <a href="#" class="read-more" id="post1-readmore">Read more &raquo;</a>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="post">
+        <h2><a href="#" id="post2-title">Laptop in meeting room</a></h2>
+        <div class="post-meta">
+          Date: <a href="#" id="post2-date">25.02.2018</a> <span>|</span>
+          Posted by <a href="#" id="post2-author">Owner</a> <span>|</span>
+          Filed under <a href="#" id="post2-cat1">templates</a>, <a href="#" id="post2-cat2">internet</a>
+          with <a href="#" id="post2-comments">comments (3)</a>
+        </div>
+        <div class="post-text">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. <a href="#" class="red-link">Morbi tincidunt, orci ac commodo aliquam, lectus tortor varius lorem, eu bibungilla nunc, justo laoreet leo.</a> Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam. Cras fringilla magna. Phasellus suscipit, leo a pharetra condimentum, lorem tellus eleifend magna, egestas nulla neque nisl magna id neque. Curabitur vel urna. In tristique arcu porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac commodo aliquam, lectus tellus eleifend magna, egestas aliquam.</p>
+          <p>Mauris ac odio massa. Maecenas tellus turpis, consequat at congue vitae, dignissim ac sem. Nunc feugiat rhoncus libero, sed venenatis quam accumsan sed. Praesent malesuada fringilla pulvinar. Curabitur sodales urna a orci volutpat mollis. Vivamus sit amet leo condimentum iaculis. Sed sodales mattis eleifend. Aliquam sed condimentum massa. Nullam at orci nibh. Aliquam luctus fringilla facilisis. Nam imperdiet.</p>
+          <a href="#" class="read-more" id="post2-readmore">Read more &raquo;</a>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div id="pagination">
+        <span class="page-info">Page 1 of 2</span>
+        <div class="page-links">
+          <span class="active-page" id="page-1">1</span>
+          <a href="#" id="page-2">2</a>
+          <a href="#" id="page-next">&raquo;</a>
+        </div>
+      </div>
+
+    </div><!-- end #content -->
+
+    <!-- SIDEBAR -->
+    <div id="sidebar">
+      <div class="sidebar-section">
+        <h3>Sidebar Menu</h3>
+        <ul>
+          <li><a href="#" id="sb-home">Home</a></li>
+          <li><a href="#" id="sb-templateinfo">Templateinfo</a></li>
+          <li><a href="#" id="sb-styledemo">Style Demo</a></li>
+          <li><a href="#" id="sb-blog">Blog</a></li>
+          <li><a href="#" id="sb-archives">Archives</a></li>
+          <li><a href="#" id="sb-templates">Website Templates</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h3>Sponsors</h3>
+        <div class="sponsor-item">
+          <p>Lorem ipsum dolor.</p>
+          <a href="#" id="sp1">Donec libero. Suspendisse bibendum</a>
+        </div>
+        <div class="sponsor-item">
+          <p>Dui pede condimentum lorem.</p>
+          <a href="#" id="sp2">Phasellus suscipit, leo a pharetra</a>
+        </div>
+        <div class="sponsor-item">
+          <p>Condimentum lorem</p>
+          <a href="#" id="sp3">Tellus eleifend magna egel</a>
+        </div>
+        <div class="sponsor-item">
+          <p>Felsidita venit magna</p>
+          <a href="#" id="sp4">Curabitur vel urna in tristique</a>
+        </div>
+        <div class="sponsor-item">
+          <p>Suspendisse bibendum</p>
+          <a href="#" id="sp5">Cras id urna orci rhididunt orci ac</a>
+        </div>
+        <div class="sponsor-item">
+          <p>Donec mattis</p>
+          <a href="#" id="sp6">purus nec placerat bibendum</a>
+        </div>
+      </div>
+    </div><!-- end #sidebar -->
+
+  </div><!-- end #main-area -->
+
+  <!-- FOOTER PANELS -->
+  <div id="footer-panels">
+    <div class="footer-panel">
+      <h4>Image Gallery</h4>
+      <div class="gallery-grid">
+        <div class="gallery-thumb gt1" id="gal1">&#128247;</div>
+        <div class="gallery-thumb gt2" id="gal2">&#128248;</div>
+        <div class="gallery-thumb gt3" id="gal3">12</div>
+        <div class="gallery-thumb gt4" id="gal4">&#127988;</div>
+        <div class="gallery-thumb gt5" id="gal5">idea</div>
+        <div class="gallery-thumb gt6" id="gal6">&#129309;</div>
+      </div>
+    </div>
+    <div class="footer-panel">
+      <h4>Lorem Ipsum</h4>
+      <p class="lorem-text">
+        Lorem ipsum dolor<br/>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. <a href="#" id="footer-link1">Morbi tincidunt, orci ac convallis aliquam,</a> lectus varius lorem, eu posuere nunc justo leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam.
+      </p>
+    </div>
+    <div class="footer-panel">
+      <h4>Contact</h4>
+      <div class="contact-info">
+        <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue.</p>
+        <p><a href="mailto:support@yoursite.com" class="contact-email" id="contact-email">support@yoursite.com</a></p>
+        <p style="color:#888;">+1 (123) 444-5677<br/>+1 (123) 444-5678</p>
+        <p style="margin-top:8px;">Address: 123 TemplateAccess Rd1</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM FOOTER -->
+  <div id="bottom-footer">
+    <span>Copyright &copy; 2010 <a href="#" id="footer-site-link">AfterJungle</a> - All Rights Reserved</span>
+    <span>Free CSS Templates by <a href="#" id="footer-freecss">Free Website TemplateZ</a></span>
+  </div>
+
+</div><!-- end #wrapper -->
+
+<script>
+  // Nav active state
+  document.querySelectorAll('#nav ul li a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('#nav ul li').forEach(function(li) { li.classList.remove('active'); });
+      this.parentElement.classList.add('active');
+    });
+  });
+  // Search
+  var si = document.getElementById('site-search');
+  si.addEventListener('focus', function() { if (!this.value) this.style.color = '#333'; });
+  si.addEventListener('blur', function() { if (!this.value) this.style.color = '#aaa'; });
+  document.getElementById('search-btn').addEventListener('click', function() {
+    if (si.value.trim()) alert('Searching: ' + si.value);
+  });
+  // Gallery click feedback
+  document.querySelectorAll('.gallery-thumb').forEach(function(t) {
+    t.addEventListener('click', function() {
+      var self = this;
+      self.style.opacity = '0.6';
+      setTimeout(function() { self.style.opacity = '1'; }, 200);
+    });
+  });
+</script>
+</body>
+</html>

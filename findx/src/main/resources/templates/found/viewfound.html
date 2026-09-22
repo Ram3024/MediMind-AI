@@ -1,0 +1,72 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body><main>
+<div class="page-header">
+  <div class="container px-4">
+    <h1><i class="bi bi-bag-check-fill me-2 text-success"></i>Browse Found Items</h1>
+  </div>
+</div>
+<div class="container px-4 py-4">
+  <div class="card mb-4" style="border-radius:16px;">
+    <div class="card-body p-3">
+      <form method="get" action="/found/browse" class="row g-2 align-items-end">
+        <div class="col-md-5">
+          <label class="form-label small fw-semibold">Search</label>
+          <input type="text" name="keyword" class="form-control" placeholder="Samsung phone, black wallet..." th:value="${keyword}" id="found-search-kw">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label small fw-semibold">Category</label>
+          <select name="category" class="form-select" id="found-search-cat">
+            <option value="">All Categories</option>
+            <option th:each="cat : ${categories}" th:value="${cat.name}" th:text="${cat.name}"
+                    th:selected="${cat.name == selectedCategory}">Category</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label small fw-semibold">City</label>
+          <input type="text" name="city" class="form-control" placeholder="City" th:value="${searchCity}" id="found-search-city">
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+          <button type="submit" class="btn btn-success flex-grow-1" id="found-search-btn"><i class="bi bi-search"></i></button>
+          <a href="/found/browse" class="btn btn-outline-secondary"><i class="bi bi-x"></i></a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between mb-3">
+    <p class="text-muted mb-0 small"><span th:text="${items.size()}">0</span> found items listed</p>
+    <a href="/found/report" class="btn btn-report-found btn-sm"><i class="bi bi-plus me-1"></i>Report Found</a>
+  </div>
+
+  <div class="row g-3" th:if="${!items.empty}">
+    <div class="col-md-3 col-sm-6" th:each="item : ${items}">
+      <div class="item-card h-100">
+        <div th:if="${item.firstImage != null}">
+          <img th:src="@{/uploads/{img}(img=${item.firstImage})}" class="item-image" th:alt="${item.itemName}">
+        </div>
+        <div th:if="${item.firstImage == null}" class="item-image-placeholder">
+          <i class="bi bi-bag-check-fill" style="color:#10b981;"></i>
+        </div>
+        <div class="p-3">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <h6 class="fw-bold mb-0 text-truncate pe-2" th:text="${item.itemName}">Item</h6>
+            <span class="item-badge-found">Found</span>
+          </div>
+          <p class="text-muted mb-1" style="font-size:0.8rem;"><i class="bi bi-tag me-1"></i><span th:text="${item.category}">Category</span></p>
+          <p class="text-muted mb-1" style="font-size:0.8rem;"><i class="bi bi-geo-alt me-1"></i><span th:text="${item.city}">City</span></p>
+          <p class="text-muted mb-2" style="font-size:0.8rem;"><i class="bi bi-calendar me-1"></i><span th:text="${item.foundDate}">Date</span></p>
+          <a th:href="@{/found/detail/{id}(id=${item.id})}" class="btn btn-sm btn-outline-success w-100">
+            <i class="bi bi-eye me-1"></i>View Details
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:if="${items.empty}" class="text-center py-5 text-muted">
+    <i class="bi bi-inbox display-4 d-block mb-3"></i>
+    <h5>No found items yet</h5>
+    <a href="/found/report" class="btn btn-success">Report Found Item</a>
+  </div>
+</div>
+</main></body>
+</html>

@@ -1,0 +1,27 @@
+<html lang="en" th:replace="~{admin/adminbase :: layout(~{::main})}">
+<body>
+ <main>
+ 	<h1 style="text-align:center;">View Users Feedback</h1>
+ 	<table class="table table-bordered">
+ 		<tr>
+ 			<th>Id</th>
+ 			<th>Name</th>
+ 			<th>Contact No</th>
+ 			<th>Email Address</th>
+ 			<th>Subject</th>
+ 			<th>Feedback</th>
+ 			<th>Posted Date</th>
+ 		</tr>
+ 		<tr th:each="r:${res}">
+ 			<td th:text="${r.id}"></td>
+ 			<td th:text="${r.name}"></td>
+ 			<td th:text="${r.contactno}"></td>
+ 			<td th:text="${r.emailaddress}"></td>
+ 			<td th:text="${r.subject}"></td>
+ 			<td th:text="${r.responsetext}"></td>
+ 			<td th:text="${r.posteddate}"></td>
+ 		</tr>
+ 	</table>
+ </main>
+</body>
+</html>
