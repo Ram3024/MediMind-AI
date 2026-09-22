@@ -1,4 +1,5 @@
-# Excluded projects
+# Excluded projects (Do not upload to GitHub)
+ClipGenius-AI/
 findx/
 
 # Environment variables & secrets
